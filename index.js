@@ -1,65 +1,104 @@
-/*
-Homework 1: Number Manipulation
+/*	
+Homework for lesson 5
+1. Write a program that checks whether a given year is a leap year. Use nested if-else statements to handle the conditions. A leap year is divisible by 4, except for years that are divisible by 100, unless they are also divisible by 400.
 
-Create a function called calculateAreaOfCircle that takes the radius of a circle as a parameter and calculates and returns the area of the circle. Use the formula: 
-Area=π×radius^2
+2. Develop a program that takes three numbers as input and uses nested ternary operators to find and print the largest number among them.
 
+3. Write a program using a while loop to simulate the Fibonacci sequence. Generate the first 10 numbers in the sequence and print them.
 
-Homework 2: String Manipulation
+4. Implement a for loop that iterates over numbers from 1 to 100. Print 'Fizz' for multiples of 3, 'Buzz' for multiples of 5, and 'FizzBuzz' for numbers that are multiples of both 3 and 5. Otherwise, print the number.
 
-Create a function called formatGreeting that takes a name as a parameter and returns a formatted greeting. The function should:
-
-Replace the placeholder name "John" in the greeting "Hello I'm John, nice to meet you" with the provided name.
-Remove any extra spaces from the beginning and end of the formatted greeting.
-Repeat the formatted greeting twice.
-
-
-Homework 3: Math Challenge
-
-Create a function called calculateHypotenuse that takes the lengths of the two sides of a right-angled triangle as parameters (a and b) and calculates and returns the length of the hypotenuse using the Pythagorean theorem: 
-
-a^2 + b^2 = c^2
- 
-​Homework 4: Advanced String Manipulation
-
-Create a function called reverseWords that takes a sentence as a parameter and returns a new sentence where the order of words is reversed. For example, "Hello World" should become "World Hello". 
+5. Implement a program that checks whether a given string is a palindrome (reads the same backward as forward) using conditional statements. Ignore spaces and case sensitivity.
 */
 
-//task 1
-function calculateAreaOfCircle(r) {
-    return Math.PI * Math.pow(r, 2);
+//Task1
+function isaLeapYear(i) {
+    if (i >= - 45 && i <= - 9 && i % 3 === 0) {
+        console.log(`the ${i} year is a leap year`)
+    } else if (i > 0 && i % 4 === 0 && i % 100 !== 0) {
+        console.log(`the ${i} year is a leap year`)
+    } else if (i > 0 && i % 4 === 0 && i % 400 === 0) {
+        console.log(`the ${i} year is a leap year`)
+    } else {
+        console.log(`the ${i} year is a happy(normal) year`)
+    }
+}
+//45 year bc was the first leap year in history, and according to wiki before 0 year they were debagging the system, that's why i have first if 
+
+isaLeapYear(-888)
+isaLeapYear(-33);
+isaLeapYear(-7);
+isaLeapYear(888);
+isaLeapYear(1369);
+isaLeapYear(1100);
+isaLeapYear(2000);
+
+
+//Task2
+function largestNum(a, b, c) {
+    a > b && a > c ? console.log(a) : 
+    b > c ? console.log(b) :
+    console.log(c);
 }
 
-console.log(calculateAreaOfCircle(5));
+largestNum(3, 6, 9); 
+largestNum(9, 6, 3);
+largestNum(3, 9, 6);
 
-//task 2
-function formatGreeting(name) {
-    return `Hello I'm ${name.trim()}, nice to meet you `.repeat(2);
+//Task3
+function fibonacciWhile(a) {
+    let i = 1;
+    let b = a + a;
+
+    while(i <= 5) {
+        console.log(a);
+        a = a + b;
+        console.log(b);
+        b = b + a;
+        i++;
+    }
 }
 
-console.log(formatGreeting('    Merlin        '));
+fibonacciWhile(5);
+fibonacciWhile(-8);
 
-//task 3
-function calculateHypotenuse(a, b){
-    return Math.pow(a, 2) + Math.pow(b, 2);
+//Task4
+function fizzBuzz() {
+for (i = 1; i <= 100; i++) {
+    if (i % 3 === 0 && i % 5 !== 0) {
+        console.log('Fizz');
+    } else if (i % 3 !== 0 && i % 5 === 0) {
+        console.log('Buzz');
+    } else if (i % 3 === 0 && i % 5 === 0) {
+        console.log('FizzBuzz');
+    } else {
+        console.log(i);
+    }
+}
 }
 
-console.log(`The hypotenuse of a triangle is ${calculateHypotenuse(11, 5)}`);
+fizzBuzz();
 
-//task 4
-/*function reverseWords(str, i) {
-    return `${str.substring(i)} ${str.slice(0, i)}`;
-}*/
+//Task5
+//doesn't work at all and i dont understand why, so whole func is a one big question
+function isaPalindrome(text) {
+    let i = text.at(0).toLowerCase();
+    let j = text.at(-1).toLowerCase();
+   // console.log('test ', i <= text.length);
+    for ( ; i.length <= text.length && j.length <= - text.length; ) {
+        if(i === j && i !== ' ' && j !== ' ') {
+            i++;
+            j--;
+        } else if (i !== j && i === ' ') {
+            i++;
+        } else if (i !== j && j === ' ') {
+            j--;
+        } else if (i !== j && i !== ' ' && j !== ' ') {
+            console.log('thanks for a boring case');
+        } console.log('congrats, you found a palindrome!');
+    }
+}
 
-function reverseWords(str) {
-    let firstPart;
-    let lastPart;
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] === ' ') {
-            firstPart = str.substring(i); 
-            lastPart = str.slice(0, i);
-        }
-    } return firstPart + ' ' + lastPart;
-} 
-
-console.log(reverseWords('Hello sweet World'));
+isaPalindrome('шалаш');
+isaPalindrome('а Роза упала на лапу Азора');
+isaPalindrome("huoston we have a problem's");
