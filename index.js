@@ -1,65 +1,94 @@
 /*
-Homework 1: Number Manipulation
+1. Write a function called calculateArea that calculates the area of a rectangle. It should take two parameters: width and height and return the calculated area.
 
-Create a function called calculateAreaOfCircle that takes the radius of a circle as a parameter and calculates and returns the area of the circle. Use the formula: 
-Area=π×radius^2
+2. Write a function expression named isEven that checks if a given number is even. Test the function with various numbers.
 
+3. Create an arrow function named cube that calculates the cube of a given number. Test the function with different values.
 
-Homework 2: String Manipulation
+4. Write a function named greetUser that takes a name and a greeting (with a default value of "Hello") as parameters and logs a personalized greeting. Test the function with different scenarios.
 
-Create a function called formatGreeting that takes a name as a parameter and returns a formatted greeting. The function should:
+5. Given the following product information:
+let product = {
+    name: 'Smartphone',
+    price: 500,
+    discount: 10,
+    stock: 50
+};
 
-Replace the placeholder name "John" in the greeting "Hello I'm John, nice to meet you" with the provided name.
-Remove any extra spaces from the beginning and end of the formatted greeting.
-Repeat the formatted greeting twice.
+Your task is to create a function named calculateRevenue that performs the following:
 
+1. Calculate the discounted price after applying the discount to the original price.
+2. For each of the next 5 years, calculate and store the revenue generated from selling the product, considering the current stock, discounted price, and the number of years.
 
-Homework 3: Math Challenge
+Here is a sample structure for the calculateRevenue function:
 
-Create a function called calculateHypotenuse that takes the lengths of the two sides of a right-angled triangle as parameters (a and b) and calculates and returns the length of the hypotenuse using the Pythagorean theorem: 
+function calculateRevenue(product) {
+    // Your code here
 
-a^2 + b^2 = c^2
- 
-​Homework 4: Advanced String Manipulation
-
-Create a function called reverseWords that takes a sentence as a parameter and returns a new sentence where the order of words is reversed. For example, "Hello World" should become "World Hello". 
-*/
-
-//task 1
-function calculateAreaOfCircle(r) {
-    return Math.PI * Math.pow(r, 2);
+    return results;
 }
 
-console.log(calculateAreaOfCircle(5));
+The results object should have properties representing each year, with a message describing the revenue for that year. The message should include the year number, product name, discounted price, and calculated revenue.
+ */
 
-//task 2
-function formatGreeting(name) {
-    return `Hello I'm ${name.trim()}, nice to meet you `.repeat(2);
+
+//Task 1
+const calculateArea = (a, b) => a * b;
+
+console.log(calculateArea(5, 8));
+
+//Task 2
+function isEven(num) {
+    if (num % 2 === 0) {
+        console.log(`${num} is an even number`);
+    } else {
+        console.log(`${num} is an odd number`);
+    }
 }
 
-console.log(formatGreeting('    Merlin        '));
+isEven(94752792);
+isEven(3);
+//Task 3
+const cube = (a) => a ** 3;
 
-//task 3
-function calculateHypotenuse(a, b){
-    return Math.pow(a, 2) + Math.pow(b, 2);
+console.log(cube(3));
+console.log(cube(15));
+console.log(cube(-5));//can cube be neative?
+
+//Task 4
+const greetUser = (name) => {
+    console.log(`Hello ${name}`);
+};
+
+greetUser('user331');
+greetUser('иванушка');
+greetUser('');
+greetUser(' ');
+
+//Task 5
+let product = {
+    name: 'Smartphone',
+    price: 500,
+    discount: 10,
+    stock: 50
+};
+
+function calculateRevenue(product) {
+    let results = {};
+    let year = 2024;
+    let discount = product.price * 0.1;
+
+    for(let i = 1; i <= 5; i++) {
+
+        results[i] = `This is the ${product.name} revenue for ${year} which earned us ${product.price - discount} for each and made up general amount of ${product.stock * (product.price - discount)}.`;
+        year++;
+    }
+    return results;
 }
 
-console.log(`The hypotenuse of a triangle is ${calculateHypotenuse(11, 5)}`);
+console.log(calculateRevenue(product));
 
-//task 4
-/*function reverseWords(str, i) {
-    return `${str.substring(i)} ${str.slice(0, i)}`;
-}*/
 
-function reverseWords(str) {
-    let firstPart;
-    let lastPart;
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] === ' ') {
-            firstPart = str.substring(i); 
-            lastPart = str.slice(0, i);
-        }
-    } return firstPart + ' ' + lastPart;
-} 
 
-console.log(reverseWords('Hello sweet World'));
+
+
